@@ -1,0 +1,45 @@
+/* BASE */
+$base: 0.4rem;
+
+/* COLORS */
+$white: #fff;
+$gray-200: #dcdcdc;
+$gray-300: #a3a8ae;
+$gray-900: #030303;
+$black: #000;
+$yellow: #e2d02d;
+
+$primary: $gray-200;
+$secondary: $white;
+$info: $yellow;
+
+/* BREAK POINTS */
+$xs: 0;
+$sm: 480px;
+$md: 768px;
+$lg: 992px;
+$xl: 1366px;
+
+// @media (min-width: $sm) {}
+// @media (min-width: $md) {}
+// @media (min-width: $lg) {}
+// @media (min-width: $xl) {}
+
+/* BORDER RADIUS */
+$border-radius-regular: $base * 0.75;
+
+/* SHADOWS */
+@mixin regular-shadow {
+  box-shadow: (0 4px 4px rgb(0 0 0 / 0.25));
+}
+
+/* TRANSITIONS */
+@mixin transition {
+  transition: all 300ms ease;
+}
+
+/* Z-INDEXES */
+$z-index-above-all: 1000;
+$z-index-surface: 8;
+$z-index-middle: 5;
+$z-index-bottom: 0;

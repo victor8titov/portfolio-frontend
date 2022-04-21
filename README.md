@@ -1,21 +1,7 @@
-# 🚀 Welcome to your new awesome project!
+# Portfolio
 
-This project has been created using **webpack-cli**, you can now run
+Frontend path project.
 
 ```
 npm run build
 ```
-
-or
-
-```
-yarn build
-```
-
-to bundle your application
-
-
-
-- typescript 
-- optomize
-- svg

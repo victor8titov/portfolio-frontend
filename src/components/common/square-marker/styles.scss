@@ -1,0 +1,74 @@
+@import "../../../styles/variables";
+@import "../../../styles/fonts";
+
+.square-marker {
+  position: relative;
+  z-index: $z-index-middle;
+  width: 15px;
+  height: 15px;
+
+  &__square,
+  &__square-active,
+  &__square-fill {
+    position: absolute;
+  }
+
+  &__square {
+    top: 3px;
+    left: 3px;
+    opacity: 1;
+    transition: all 300ms;
+    transform: scale(1);
+  }
+
+  &__square-active {
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: all 400ms;
+    transform: scale(0.75);
+  }
+
+  &__square-fill {
+    top: 4px;
+    left: 3.1px;
+    opacity: 0;
+    transform: scale(-0.5) rotate(-180deg);
+  }
+
+  &_active {
+    .square-marker__square {
+      opacity: 0;
+      transform: scale(1.05);
+    }
+
+    .square-marker__square-active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .square-marker__square-fill {
+      animation: 500ms ease-in-out 0.5s both scale-and-rotate;
+    }
+  }
+}
+
+@keyframes scale-and-rotate {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(-180deg);
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  40% {
+    transform: scale(3) rotate(180deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}

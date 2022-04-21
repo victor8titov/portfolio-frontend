@@ -1,25 +1,45 @@
-import React, { lazy } from 'react'
-import ReactDOM from 'react-dom'
+import React, { FC, lazy } from 'react'
+import { CSSTransition, TransitionGroup, SwitchTransition } from 'react-transition-group'
+// import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-// import { createRoot } from 'react-dom/client'
+import { BrowserRouter, Route, Routes, useLocation, useMatch, useParams } from 'react-router-dom'
 
 import App from './App'
+import Contact from './components/pages/contact'
+import Experience from './components/pages/experience'
+import Main from './components/pages/main'
+import Skills from './components/pages/skills'
+import Works from './components/pages/works'
+import { CONTACT, EXPERIENCE, MAIN, SKILLS, WORKS } from './constants/routes'
 import store from './store'
 
-// const root = createRoot(document.getElementById('root') as Element)
+const root = createRoot(document.getElementById('root') as Element)
 
-// TODO have problem with select from antd. Browser freeze if use antd select
-// it is happening if use react 18
-// root.render(
+const RoutesC: FC = () => {
+  const location = useLocation()
+  return (
+      <SwitchTransition >
+        <CSSTransition key={location.key} classNames="action" timeout={300}>
+          <Routes location={location}>
+            <Route path={MAIN} element={<Main />} />
+            <Route path={WORKS} element={<Works />} />
+            <Route path={EXPERIENCE} element={<Experience />} />
+            <Route path={SKILLS} element={<Skills />} />
+            <Route path={CONTACT} element={<Contact />} />
+            <Route path="*" element={<Main />} />
+          </Routes>
+        </CSSTransition>
+      </SwitchTransition>
+  )
+}
 
-ReactDOM.render(
-    <Provider store={store}>
-      <BrowserRouter>
-        <Routes>
-          <Route element={<App />} >
-            <Route path='/' element={<div>test page</div>} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </Provider>, document.getElementById('root'))
+root.render(
+  <Provider store={store}>
+    <BrowserRouter>
+      <App >
+        <RoutesC />
+      </App>
+    </BrowserRouter>
+  </Provider>
+)

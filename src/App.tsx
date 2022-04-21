@@ -1,11 +1,30 @@
-import React, { FC } from 'react'
-import { Outlet } from 'react-router-dom'
+import React, { FC, ReactChild } from 'react'
+import { Outlet, useLocation } from 'react-router-dom'
+import { CSSTransition, TransitionGroup, SwitchTransition } from 'react-transition-group'
+import Header from './components/common/header'
+import Navigation from './components/common/navigation'
+import { useInitLocalization } from './localization/use-init-localization'
+import './styles/index.scss'
 
-const App: FC = () => {
+type Props = {
+  children: ReactChild
+}
+
+const App: FC<Props> = ({ children }) => {
+  useInitLocalization()
   return (
-    <div>
-      <h1>App wrapper</h1>
-      <Outlet />
+    <div className='app'>
+
+      <Header />
+
+      <main>
+       {children}
+      </main>
+
+      <footer >
+        footer
+      </footer>
+
     </div>
   )
 }

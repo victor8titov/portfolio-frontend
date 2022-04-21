@@ -1,0 +1,54 @@
+@mixin font-primary {
+  font-family: "Roboto Mono", monospace;
+  font-weight: 300;
+}
+
+@mixin font-secondary {
+  font-family: Scada, sans-serif;
+  font-weight: 700;
+}
+
+@mixin font-third {
+  font-family: "Alumni Sans", sans-serif;
+  font-weight: 600;
+}
+
+html,
+body {
+  @include font-primary;
+
+  font-size: 10px;
+}
+
+h1 {
+  @include font-secondary;
+
+  font-size: 5rem;
+  color: $secondary;
+}
+
+h2 {
+  @include font-third;
+
+  color: $info;
+}
+
+h3 {
+  @include font-secondary;
+
+  font-size: 1.6rem;
+  color: $secondary;
+}
+
+p,
+span {
+  @include font-primary;
+
+  font-size: 1.3rem;
+  color: $primary;
+}
+
+a {
+  font-size: 1.3rem;
+  color: $primary;
+}

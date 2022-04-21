@@ -1,0 +1,17 @@
+.main {}
+
+.action-enter.main {
+  opacity: 0;
+}
+.action-enter-active.main {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+.action-exit.main {
+  opacity: 1;
+  transform: translateX(0);
+}
+.action-exit-active.main {
+  opacity: 0;
+  transition: opacity 200ms;
+}
