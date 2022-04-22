@@ -1,15 +1,12 @@
-@import "../../../styles/variables";
-@import "../../../styles/fonts";
+@import "../../../../../styles/variables";
+@import "../../../../../styles/fonts";
 
 $height: 40px;
 
-.navigation {
-  position: fixed;
-  top: 30%;
-  right: 10px;
-  text-align: right;
+.desktop-menu {
+  position: relative;
 
-  ul,
+  &,
   li {
     padding: 0;
     margin: 0;
@@ -97,13 +94,9 @@ $height: 40px;
     }
   }
 
-  // @media (min-width: $sm) {}
   @media (min-width: $md) {
     right: 20px;
   }
-
-  // @media (min-width: $lg) {}
-  // @media (min-width: $xl) {}
 }
 
 @keyframes show-hidden-link {
