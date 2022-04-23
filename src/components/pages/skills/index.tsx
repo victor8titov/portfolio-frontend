@@ -17,12 +17,12 @@ const Skills: FC = () => {
   const ColumnGroups: FC<{list: string[]}> = ({ list }) => {
     return (
       <>
-        {list.map((group) => {
+        {list.map((group, index) => {
           const found = skills?.items
             .filter((i) => i.group === group)
             .map((i) => i.name)
           return (
-            <div key={group + found} className="skills__group">
+            <div key={group + found} className="skills__group" style={{ animationDelay: 150 * index + 'ms' }}>
               <h2>{group}</h2>
               <p>{found?.join(', ')}</p>
             </div>
