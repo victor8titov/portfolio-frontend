@@ -1,7 +1,4 @@
-import React, { FC, useCallback } from 'react'
-import { useLocalizedStrings } from '../../../localization/use-localized-strings'
-import { Language } from '../../../types/common'
-import { uniteClasses } from '../../../utils/unite-style-classes'
+import React, { FC } from 'react'
 import useBreakpoint from '../../../utils/use-breakpoint'
 import Menu from '../menu'
 import SwitcherLanguages from '../switcher-languages'
