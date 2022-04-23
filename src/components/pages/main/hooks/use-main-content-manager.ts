@@ -1,19 +1,22 @@
-import { useCallback, useEffect, useMemo } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, State } from '../../../../store'
 import { homePageActions } from '../../../../store/slices/homepage'
 import { getUrlImageByTemplate } from '../../../../utils/get-url-image'
 import useBreakpoint from '../../../../utils/use-breakpoint'
+import useManagerLoadingImage, { StatusImage } from '../../../../utils/use-manager-loading-image'
 
 type UseMainContentManager = () => {
   title: string | null
   subtitle: string | null
   description: string[] | null
-  avatarImg: string | null
+  statusImage: StatusImage
+  loading: boolean
 }
 
 const useMainContentManager: UseMainContentManager = () => {
   const dispatch: AppDispatch = useDispatch()
+  const { loadImage, statusImage } = useManagerLoadingImage()
 
   const isDesktop = useBreakpoint().md
 
@@ -29,16 +32,23 @@ const useMainContentManager: UseMainContentManager = () => {
     homePage?.description
       ? homePage.description.split('\n').filter(i => i)
       : null, [homePage])
-  const avatarImg = useCallback(() => {
-    if (!homePage || !homePage.avatars || !homePage.avatars.length) return null
 
-    const avatar = [...homePage.avatars].shift()
-    if (!avatar) return null
+  useEffect(() => {
+    if (
+      !statusImage.hasError &&
+      !statusImage.loading &&
+      !statusImage.loaded &&
+      homePage &&
+      homePage.avatars &&
+      homePage.avatars.length) {
+      const avatar = [...homePage.avatars].shift()
+      if (!avatar) return
 
-    const src = getUrlImageByTemplate(avatar.image, isDesktop ? 'original' : 'mid')
+      const src = getUrlImageByTemplate(avatar.image, isDesktop ? 'original' : 'mid')
 
-    return src || null
-  }, [homePage, isDesktop])
+      loadImage(src)
+    }
+  }, [homePage, isDesktop, statusImage, loadImage])
 
   useEffect(() => {
     if (
@@ -55,7 +65,8 @@ const useMainContentManager: UseMainContentManager = () => {
     title,
     subtitle,
     description,
-    avatarImg: avatarImg()
+    statusImage,
+    loading
   }
 }
 

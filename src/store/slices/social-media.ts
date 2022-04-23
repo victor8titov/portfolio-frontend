@@ -5,10 +5,14 @@ import { SocialMediaView } from '../../api/types/social-media.types'
 
 export type SocialMediaState = {
   socialMedia: SocialMediaView[]
+  loading: boolean
+  hasError: boolean
 }
 
 const initialState: SocialMediaState = {
-  socialMedia: []
+  socialMedia: [],
+  loading: false,
+  hasError: false
 }
 
 const fetchSocialMedia = createAsyncThunk(
@@ -35,6 +39,14 @@ const socialMediaSlice = createSlice({
     builder
       .addCase(fetchSocialMedia.fulfilled, (state, { payload }) => {
         state.socialMedia = payload.items
+        state.loading = false
+      })
+      .addCase(fetchSocialMedia.rejected, (state) => {
+        state.hasError = true
+        state.loading = false
+      })
+      .addCase(fetchSocialMedia.pending, (state) => {
+        state.loading = true
       })
   }
 })

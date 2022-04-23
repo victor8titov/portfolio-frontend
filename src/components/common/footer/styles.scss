@@ -1,6 +1,6 @@
 @import "../../../styles/variables";
 
-footer {
+.footer {
   position: absolute;
   bottom: 0;
   display: flex;
@@ -8,6 +8,54 @@ footer {
   justify-content: flex-end;
   width: 100%;
   height: 80px;
-  color: white;
-  border: 1px solid green;
+
+  &__box-links {
+    display: flex;
+    align-items: center;
+  }
+
+  &__link:hover {
+    animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+  }
+
+  &__link_img {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    padding: 10px;
+  }
+
+  &__link + &__link {
+    margin-left: 5px;
+  }
+}
+
+@keyframes shake-horizontal {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70% {
+    transform: translateX(-3px);
+  }
+
+  20%,
+  40%,
+  60% {
+    transform: translateX(3px);
+  }
+
+  80% {
+    transform: translateX(1px);
+  }
+
+  90% {
+    transform: translateX(-1px);
+  }
 }

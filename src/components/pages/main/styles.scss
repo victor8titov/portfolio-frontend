@@ -70,8 +70,10 @@
 // animation
 
 .main {
-  &__avatar > img {
-    animation: puff-in-center 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) 300ms both;
+  &__avatar {
+    img {
+      animation: puff-in-center 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) 300ms both;
+    }
   }
 
   &__description {
