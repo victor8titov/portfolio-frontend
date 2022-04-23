@@ -1,31 +1,35 @@
 body {
   box-sizing: border-box;
   min-height: 100vh;
-  margin: 0 auto;
   overflow-x: hidden;
-  background: linear-gradient(46.19deg, #030303 65.04%, rgb(30 30 30 / 0.71) 115.16%);
+  background: linear-gradient(46.19deg, #030303 65.04%, #5f5f5f 115.16%);
   background-repeat: no-repeat;
 }
 
 .app {
-  box-sizing: border-box;
-  width: 100%;
-  padding: 0 $base * 2.5;
+  position: relative;
+  width: 90%;
+  min-height: 100vh;
+  margin: 0 auto;
 
   @media (min-width: $sm) {
-    width: $sm;
-    margin: 0 auto;
+    width: 80%;
   }
 
   @media (min-width: $md) {
-    width: $md;
+    width: 700px;
   }
 
   @media (min-width: $lg) {
-    width: $lg;
+    width: 800px;
   }
 
   @media (min-width: $xl) {
-    width: $xl;
+    width: 1000px;
+  }
+
+  & > main {
+    box-sizing: border-box;
+    padding-bottom: 80px;
   }
 }

@@ -8,7 +8,7 @@ import { strings as langStrings } from './init-localization'
 type UseLocalizedStrings = () => {
   strings: typeof langStrings
   setLanguage: (language: Language) => void
-  currentLanguage: Language
+  currentLanguage: Language | null
 }
 
 export const useLocalizedStrings: UseLocalizedStrings = () => {

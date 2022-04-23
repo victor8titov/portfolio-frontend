@@ -1,0 +1,57 @@
+@import "../variables";
+
+@mixin grid-col($extend: xs, $col: 12, $offset: 0, $order: null ) {
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  padding-right: $gap;
+  padding-left: $gap;
+
+  @if $extend == xs {
+    @include grid-width($col);
+    @include grid-offset($offset);
+    @include grid-order($order);
+  } @else if $extend == sm {
+    @media only screen and (min-width: $sm) {
+      @include grid-width($col);
+      @include grid-offset($offset);
+      @include grid-order($order);
+    }
+  } @else if $extend == md {
+    @media only screen and (min-width: $md) {
+      @include grid-width($col);
+      @include grid-offset($offset);
+      @include grid-order($order);
+    }
+  } @else if $extend == lg {
+    @media only screen and (min-width: $lg) {
+      @include grid-width($col);
+      @include grid-offset($offset);
+      @include grid-order($order);
+    }
+  } @else if $extend == xl {
+    @media only screen and (min-width: $xl) {
+      @include grid-width($col);
+      @include grid-offset($offset);
+      @include grid-order($order);
+    }
+  }
+}
+
+@mixin grid-width($col) {
+  $width: 100% / $columns * $col;
+
+  flex-basis: $width;
+  max-width: $width;
+}
+
+@mixin grid-offset($offset) {
+  @if $offset != 0 {
+    margin-left: 100% / $columns * $offset;
+  }
+}
+
+@mixin grid-order($order) {
+  @if $order != null {
+    order: $order;
+  }
+}

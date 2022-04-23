@@ -20,7 +20,7 @@ const RoutesC: FC = () => {
   const location = useLocation()
   return (
       <SwitchTransition >
-        <CSSTransition key={location.key} classNames="action" timeout={300}>
+        <CSSTransition key={location.key} classNames="action" timeout={500}>
           <Routes location={location}>
             <Route path={MAIN} element={<Main />} />
             <Route path={WORKS} element={<Works />} />

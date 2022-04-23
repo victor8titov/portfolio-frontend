@@ -1,0 +1,66 @@
+@import "../variables";
+
+@mixin grid-row($extend: xs, $justify-content: 0, $align-items: 0, $text-align: 0) {
+  @if $extend == xs {
+    box-sizing: border-box;
+    display: flex;
+    flex: 0 1 auto;
+    flex-flow: row wrap;
+    margin-right: - $gap;
+    margin-left: - $gap;
+
+    @include alignment($justify-content, $align-items, $text-align);
+  } @else if $extend == sm {
+    @media only screen and (min-width: $sm) {
+      @include alignment($justify-content, $align-items, $text-align);
+    }
+  } @else if $extend == md {
+    @media only screen and (min-width: $md) {
+      @include alignment($justify-content, $align-items, $text-align);
+    }
+  } @else if $extend == lg {
+    @media only screen and (min-width: $lg) {
+      @include alignment($justify-content, $align-items, $text-align);
+    }
+  } @else if $extend == xl {
+    @media only screen and (min-width: $xl) {
+      @include alignment($justify-content, $align-items, $text-align);
+    }
+  }
+}
+
+@mixin alignment($justify-content, $align-items, $text-align) {
+  @if $justify-content == start {
+    justify-content: flex-start;
+  } @else if $justify-content == end {
+    justify-content: flex-end;
+  } @else if $justify-content == center {
+    justify-content: center;
+  } @else if $justify-content == space-around {
+    justify-content: space-around;
+  } @else if $justify-content == space-between {
+    justify-content: space-between;
+  }
+
+  @if $align-items == start {
+    align-items: flex-start;
+  } @else if $align-items == center {
+    align-items: center;
+  } @else if $align-items == end {
+    align-items: flex-end;
+  } @else if $align-items == stretch {
+    align-items: stretch;
+  } @else if $align-items == baseline {
+    align-items: baseline;
+  }
+
+  @if $text-align == left or $text-align == start {
+    text-align: start;
+  } @else if $text-align == right or $text-align == end {
+    text-align: end;
+  } @else if $text-align == center {
+    text-align: center;
+  } @else if $text-align == justify {
+    text-align: justify;
+  }
+}

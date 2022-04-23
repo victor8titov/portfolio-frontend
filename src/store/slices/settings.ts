@@ -2,11 +2,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Language } from '../../types/common'
 
 export type SettingsState = {
-  language: Language
+  language: Language | null
 }
 
 const initialState: SettingsState = {
-  language: Language.EN
+  language: null
 }
 
 const settingsSlice = createSlice({

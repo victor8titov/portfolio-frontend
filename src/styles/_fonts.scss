@@ -1,11 +1,11 @@
 @mixin font-primary {
-  font-family: "Roboto Mono", monospace;
+  font-family: Roboto, sans-serif;
   font-weight: 300;
 }
 
 @mixin font-secondary {
-  font-family: Scada, sans-serif;
-  font-weight: 700;
+  font-family: "Alumni Sans", sans-serif;
+  font-weight: 600;
 }
 
 @mixin font-third {
@@ -23,13 +23,16 @@ body {
 h1 {
   @include font-secondary;
 
-  font-size: 5rem;
+  font-size: 6.4rem;
+  line-height: 7.68rem;
   color: $secondary;
 }
 
 h2 {
   @include font-third;
 
+  font-size: 4.2rem;
+  line-height: 5.04rem;
   color: $info;
 }
 
@@ -44,7 +47,8 @@ p,
 span {
   @include font-primary;
 
-  font-size: 1.3rem;
+  font-size: 1.7rem;
+  line-height: 2.16rem;
   color: $primary;
 }
 

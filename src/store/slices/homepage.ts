@@ -6,11 +6,15 @@ import { HomePageView } from '../../api/types/homepage.types'
 import { errorSerialization } from '../utils'
 
 export type HomePageState = {
-  data: HomePageView | null
+  homePageList: HomePageView[]
+  loading: boolean
+  hasError: boolean
 }
 
 const initialState: HomePageState = {
-  data: null
+  homePageList: [],
+  loading: false,
+  hasError: false
 }
 
 const fetchHomePage = createAsyncThunk(
@@ -30,13 +34,21 @@ const homePageSlice = createSlice({
   initialState: initialState,
   reducers: {
     clear (state) {
-      state.data = initialState.data
+      state.homePageList = initialState.homePageList
     }
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchHomePage.fulfilled, (state, { payload }) => {
-        state.data = payload
+        state.homePageList = [...state.homePageList.filter(i => i.currentLanguage !== payload.currentLanguage), payload]
+        state.loading = false
+      })
+      .addCase(fetchHomePage.rejected, (state) => {
+        state.hasError = true
+        state.loading = false
+      })
+      .addCase(fetchHomePage.pending, (state) => {
+        state.loading = true
       })
   }
 })

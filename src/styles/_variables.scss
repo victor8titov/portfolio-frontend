@@ -18,7 +18,11 @@ $xs: 0;
 $sm: 480px;
 $md: 768px;
 $lg: 992px;
-$xl: 1366px;
+$xl: 1200px;
+
+/* GRID */
+$columns: 12;
+$gap: 0.5rem;
 
 // @media (min-width: $sm) {}
 // @media (min-width: $md) {}
