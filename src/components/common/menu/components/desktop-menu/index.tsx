@@ -1,4 +1,5 @@
 import React, { FC, useCallback, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { MAIN } from '../../../../../constants/routes'
 import { uniteClasses } from '../../../../../utils/unite-style-classes'
 import SquareMarker from '../../../square-marker'
@@ -8,6 +9,7 @@ import './styles.scss'
 
 const DesktopMenu: FC = () => {
   const [active, setActive] = useState<string>(MAIN)
+  const navigate = useNavigate()
   const points = usePoints()
 
   const timerId = useRef<NodeJS.Timeout | null>(null)
@@ -29,6 +31,10 @@ const DesktopMenu: FC = () => {
     timerId.current = _timerId
   }, [])
 
+  const handleClickMarker = useCallback((path: string) => () => {
+    navigate(path)
+  }, [navigate])
+
   return (
     <menu className='desktop-menu' onMouseEnter={handleMouseEntre} onMouseLeave={handleMouseLeave}>
       {points.map(({ path, text }, index) => {
@@ -40,7 +46,9 @@ const DesktopMenu: FC = () => {
               <Link style={{ animationDelay: index * 80 + 'ms' }} to={path} onActive={() => setActive(path)}>
                 {text}
               </Link>
-              <SquareMarker active={isActive}/>
+              <div className='desktop-menu__box-marker' onClick={handleClickMarker(path)}>
+                <SquareMarker active={isActive}/>
+              </div>
           </li>
         )
       })}

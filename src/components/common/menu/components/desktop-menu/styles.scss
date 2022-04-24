@@ -27,14 +27,16 @@ $height: 40px;
     text-transform: uppercase;
     opacity: 0;
     transition: 1300ms color;
+    transform: translateX(1000px);
     animation-name: show-hidden-link;
     animation-duration: 5000ms;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
+  }
 
-    .square-marker {
-      margin-left: 12px;
-    }
+  &__box-marker {
+    padding: 10px;
+    cursor: pointer;
   }
 
   &__item {
@@ -49,7 +51,7 @@ $height: 40px;
       &::after {
         position: absolute;
         top: -$height - 25px + calc(9px / 2);
-        right: 7.5px;
+        right: 17.5px;
         bottom: calc(25px + (9px / 2));
         z-index: $z-index-bottom;
         box-sizing: border-box;
@@ -84,7 +86,7 @@ $height: 40px;
 
   &_entry {
     a {
-      animation: slide-in-blurred-right 0.45s cubic-bezier(0.06, 0.858, 0.5, 0.755) forwards;
+      animation: slide-in-blurred-right 0.3s cubic-bezier(0.06, 0.858, 0.5, 0.755) forwards;
     }
   }
 
