@@ -37,12 +37,20 @@
 /* ANIMATION STYLES */
 
 .skills {
+  &__title-section {
+    animation: text-focus-in 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  }
+
   &__group {
     animation: slide-in-blurred-left 0.6s cubic-bezier(0.23, 1, 0.32, 1) both;
   }
 }
 
 .action-exit-active.skills {
+  .skills__title-section {
+    animation: slide-out-top 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  }
+
   .skills__group {
     animation: slide-out-bck-center 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
   }
@@ -73,5 +81,29 @@
   100% {
     opacity: 0;
     transform: translateZ(-1100px);
+  }
+}
+
+@keyframes text-focus-in {
+  0% {
+    filter: blur(12px);
+    opacity: 0;
+  }
+
+  100% {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out-top {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-1000px);
   }
 }
