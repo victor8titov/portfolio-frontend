@@ -1,0 +1,136 @@
+@import "../../../styles/variables";
+
+.timeline {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.timeline_split {
+  @media (min-width: $md) {
+    .timeline {
+      display: table;
+    }
+
+    .timeline-item {
+      display: table-row;
+      padding: 0;
+    }
+
+    .timeline-item__info,
+    .timeline-item__marker,
+    .timeline-item__content,
+    .timeline-item_period .timeline-item__info {
+      display: table-cell;
+      vertical-align: top;
+    }
+
+    .timeline-item__marker {
+      position: relative;
+    }
+
+    .timeline-item__content {
+      padding-left: 30px;
+    }
+
+    .timeline-item__info {
+      padding-right: 30px;
+    }
+
+    .timeline-item_period .timeline-item__content {
+      h1,
+      h2,
+      h3,
+      p,
+      span {
+        position: relative;
+        left: -45px;
+      }
+    }
+  }
+}
+
+.timeline_centered {
+  @extend .timeline_split;
+
+  @media (min-width: $md) {
+    &,
+    .timeline-item,
+    .timeline-item__info,
+    .timeline-item__marker,
+    .timeline-item__content {
+      display: block;
+      padding: 0;
+      margin: 0;
+    }
+
+    .timeline-item {
+      padding-bottom: 40px;
+      overflow: hidden;
+    }
+
+    .timeline-item__marker {
+      position: absolute;
+      left: 50%;
+      margin-left: -7.5px;
+    }
+
+    .timeline-item__info,
+    .timeline-item__content {
+      width: 46%;
+    }
+
+    & > .timeline-item:nth-child(odd) .timeline-item__info {
+      float: left;
+      padding-right: 30px;
+      text-align: right;
+    }
+
+    & > .timeline-item:nth-child(odd) .timeline-item__content {
+      float: right;
+      padding-left: 30px;
+      text-align: left;
+    }
+
+    & > .timeline-item:nth-child(even) .timeline-item__info {
+      float: right;
+      padding-left: 30px;
+      text-align: left;
+    }
+
+    & > .timeline-item:nth-child(even) .timeline-item__content {
+      float: left;
+      padding-right: 30px;
+      text-align: right;
+    }
+
+    & > .timeline-item_period .timeline-item__content {
+      float: none;
+      width: 100%;
+      padding: 0;
+      text-align: center;
+    }
+
+    .timeline-item_period {
+      padding: 50px 0 90px;
+    }
+
+    .timeline-item_period .timeline-item__marker::after {
+      top: auto;
+      bottom: 0;
+      height: 30px;
+    }
+
+    .timeline-item_period .timeline-item__content {
+      h1,
+      h2, 
+      h3,
+      h4,
+      p,
+      span {
+        left: auto;
+        text-align: center;
+      }
+    } 
+  }
+}

@@ -1,0 +1,108 @@
+@import "../../../../../styles/variables";
+
+.timeline-item {
+  position: relative;
+  padding-left: 40px;
+
+  &__info {
+    margin: 0 0 0.5em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    white-space: nowrap;
+  }
+
+  &__marker {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 12px;
+
+    &::before {
+      position: absolute;
+      top: 6px;
+      left: 0;
+      box-sizing: border-box;
+      display: block;
+      width: 12px;
+      height: 12px;
+      content: "";
+      background: $yellow;
+      border: 2px solid transparent;
+      border-radius: 100%;
+      transition:
+        background 0.3s ease-in-out,
+        border 0.3s ease-in-out;
+    }
+
+    &::after {
+      position: absolute;
+      top: 23px;
+      bottom: 0;
+      left: 5.5px;
+      display: block;
+      width: 1px;
+      content: "";
+      background: $gray-300;
+    }
+
+    .timeline-item:last-child &::after {
+      content: none;
+    }
+  }
+
+  &:not(.timeline-item_period):hover .timeline-item__marker::before {
+    background: transparent;
+    border: 1px solid $gray-300;
+  }
+
+  &__content {
+    padding-bottom: 40px;
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &_period {
+    padding: 0;
+
+    .timeline-item__info {
+      display: none;
+    }
+
+    .timeline-item__marker {
+      &::before {
+        position: absolute;
+        top: 0;
+        bottom: 30px;
+        width: 12px;
+        height: auto;
+        content: "";
+        background: transparent;
+        border: none;
+        border-top: 2px solid $gray-300;
+        border-bottom: 2px solid $gray-300;
+        border-radius: 0;
+      }
+
+      &::after {
+        top: auto;
+        height: 32px;
+        content: "";
+      }
+    }
+
+    .timeline-item__content {
+      padding: 40px 0 70px;
+
+      h1,
+      h2,
+      h3,
+      p,
+      span {
+        margin: 0;
+      }
+    }
+  }
+}

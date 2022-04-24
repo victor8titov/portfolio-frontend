@@ -1,17 +1,20 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import * as restApi from '../../api'
 import { errorSerialization } from '../utils'
-import { TimeStampView } from '../../api/types/time-stamp.types'
+import { ListTimeStamps } from '../../api/types/time-stamp.types'
 import { QueryParameters } from '../../api/types/common'
 
 export type TimeStampState = {
-  timeStamps: TimeStampView[]
-  timeStamp: TimeStampView | null
+  timeStamps: ListTimeStamps[]
+  loading: boolean
+  hasError: boolean
 }
 
 const initialState: TimeStampState = {
-  timeStamp: null,
-  timeStamps: []
+  timeStamps: [],
+  loading: false,
+  hasError: false
+
 }
 
 const fetchTimeStamps = createAsyncThunk(
@@ -26,35 +29,26 @@ const fetchTimeStamps = createAsyncThunk(
   }
 )
 
-const fetchTimeStampById = createAsyncThunk(
-  'fetchTimeStampById',
-  async (payload: QueryParameters & { id: string }, { rejectWithValue }) => {
-    try {
-      const { id, ...rest } = payload
-      const response = await restApi.timeStamps.getById(id, rest)
-      return response.data
-    } catch (e) {
-      return rejectWithValue(errorSerialization(e))
-    }
-  }
-)
-
 const TimeStampsSlice = createSlice({
   name: 'timeStamps',
   initialState: initialState,
   reducers: {
     clear (state) {
-      state.timeStamp = initialState.timeStamp
       state.timeStamps = initialState.timeStamps
     }
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchTimeStamps.fulfilled, (state, { payload }) => {
-        state.timeStamps = payload.items
+        state.timeStamps = [...state.timeStamps, payload]
+        state.loading = false
       })
-      .addCase(fetchTimeStampById.fulfilled, (state, { payload }) => {
-        state.timeStamp = payload
+      .addCase(fetchTimeStamps.rejected, (state) => {
+        state.hasError = true
+        state.loading = false
+      })
+      .addCase(fetchTimeStamps.pending, (state) => {
+        state.loading = true
       })
   }
 })
@@ -63,6 +57,5 @@ export default TimeStampsSlice.reducer
 
 export const timeStampsAction = {
   ...TimeStampsSlice.actions,
-  fetchTimeStamps,
-  fetchTimeStampById
+  fetchTimeStamps
 }

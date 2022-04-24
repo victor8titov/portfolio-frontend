@@ -1,0 +1,91 @@
+@import "../../../styles/variables";
+@import "../../../styles/grid/grid";
+
+.experience {
+  @include grid-row(xs);
+
+  h3 {
+    margin: 0;
+  }
+
+  &__title {
+    @include grid-col(xs, 12);
+  }
+
+  &__content {
+    @include grid-col(xs, 12);
+  }
+}
+
+/* ANIMATION STYLES */
+.experience {
+  &__title {
+    animation: text-focus-in 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  }
+
+  &__item {
+    animation: slide-in-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+}
+
+.action-exit-active.experience {
+  .experience__title {
+    animation: slide-out-top 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  }
+
+  .experience__item {
+    animation: slide-out-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+}
+
+@keyframes slide-in-left {
+  0% {
+    filter: blur(100px);
+    opacity: 0;
+    transform: translateX(-1000px);
+  }
+
+  100% {
+    filter: blur(0);
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-out-right {
+  0% {
+    filter: blur(0);
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  100% {
+    filter: blur(100px);
+    opacity: 0;
+    transform: translateX(1000px);
+  }
+}
+
+@keyframes text-focus-in {
+  0% {
+    filter: blur(12px);
+    opacity: 0;
+  }
+
+  100% {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out-top {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-1000px);
+  }
+}

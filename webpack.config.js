@@ -84,10 +84,12 @@ const config = {
     // solution that requires the user to opt into importing specific locales.
     // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
     // You can remove this if you don't use Moment.js:
-    new webpack.IgnorePlugin({
-      resourceRegExp: /^\.\/locale$/,
-      contextRegExp: /moment$/
-    }),
+    // new webpack.IgnorePlugin({
+    //   resourceRegExp: /^\.\/locale$/,
+    //   contextRegExp: /moment$/
+    // }),
+
+    new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /en|ru/),
 
     new ForkTsCheckerWebpackPlugin({
       async: false
@@ -104,6 +106,7 @@ const config = {
       },
       {
         test: /\.s[ac]ss$/i,
+        exclude: /node_modules/,
         use: [
           stylesHandler,
           'css-loader',
@@ -128,6 +131,7 @@ const config = {
       },
       {
         test: /\.css$/i,
+        exclude: /node_modules/,
         use: [
           stylesHandler,
           'css-loader',

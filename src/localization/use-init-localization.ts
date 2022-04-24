@@ -1,3 +1,4 @@
+import moment from 'moment'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { AppDispatch } from '../store'
@@ -9,6 +10,8 @@ export const useInitLocalization = (): void => {
   const dispatch: AppDispatch = useDispatch()
 
   useEffect(() => {
+    moment.locale(['en', 'ru'])
+
     const language = langStrings.getLanguage()
 
     if (Object.values(Language).some(i => i === language)) {
