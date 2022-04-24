@@ -1,5 +1,6 @@
 import moment from 'moment'
 import React, { FC } from 'react'
+import { useLocalizedStrings } from '../../../localization/use-localized-strings'
 import LoadingSuspense from '../../common/loading-suspense'
 import TimeLine from '../../common/timeline'
 import useContentManager from './hooks/use-content-content'
@@ -7,13 +8,14 @@ import './styles.scss'
 
 const Experience: FC = () => {
   const { loading, timeStamps, language } = useContentManager()
-  console.log(timeStamps)
+  const { strings } = useLocalizedStrings()
+
   let tempYear: number | null = null
 
   return (
     <section className='experience'>
       <div className='experience__title'>
-        <h1>Experience</h1>
+        <h1>{strings.experience}</h1>
       </div>
 
       <LoadingSuspense loading={loading}>

@@ -1,10 +1,13 @@
 import React, { FC, useMemo } from 'react'
+import { useLocalizedStrings } from '../../../localization/use-localized-strings'
 import LoadingSuspense from '../../common/loading-suspense'
 import useContentManager from './hooks/use-content-manager'
 import './styles.scss'
 
 const Skills: FC = () => {
   const { skills, loading } = useContentManager()
+  const { strings } = useLocalizedStrings()
+
   const groupsLeft = useMemo(
     () => skills?.groups.slice(0, Math.round(skills.groups.length / 2)) || [],
     [skills]
@@ -34,7 +37,7 @@ const Skills: FC = () => {
   return (
     <section className="skills">
       <div className="skills__title-section">
-        <h1>Skills</h1>
+        <h1>{strings.skills}</h1>
       </div>
 
       <LoadingSuspense loading={loading}>
