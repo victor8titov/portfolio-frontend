@@ -20,7 +20,7 @@ const Works: FC = () => {
           <div className='works__bottom-box-down'></div>
           <div className='works__cards-box'>
             {projects?.items.map(project => (
-              <CardProject project={project} key={project.id}/>
+              <CardProject project={project} key={project.id} />
             ))}
           </div>
           <div className='works__bottom-box-up'></div>

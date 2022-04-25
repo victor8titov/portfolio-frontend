@@ -17,20 +17,41 @@
   }
 }
 
-.action-enter.works {
-  opacity: 0;
+/* ANIMATION */
+.works {
+  &__title-section {
+    animation: text-focus-in 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  }
 }
 
-.action-enter-active.works {
-  opacity: 1;
-  transition: opacity 200ms;
+.action-exit-active {
+  .works__title-section {
+    animation: slide-out-bck-center 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  }
 }
 
-.action-exit.works {
-  opacity: 1;
+@keyframes text-focus-in {
+  0% {
+    filter: blur(12px);
+    opacity: 0;
+    transform: perspective(1000px) translateZ(-10px);
+  }
+
+  100% {
+    filter: blur(0);
+    opacity: 1;
+    transform: perspective(1000px) translateZ(0);
+  }
 }
 
-.action-exit-active.works {
-  opacity: 0;
-  transition: opacity 200ms;
+@keyframes slide-out-bck-center {
+  0% {
+    opacity: 1;
+    transform: perspective(1000px) translateZ(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: perspective(1000px) translateZ(-10px);
+  }
 }

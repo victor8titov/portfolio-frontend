@@ -1,6 +1,7 @@
 
 export const MAIN = '/'
 export const WORKS = 'works'
+export const WORK = 'work/:workId'
 export const EXPERIENCE = 'experience'
 export const SKILLS = 'skills'
 export const CONTACT = 'contact'

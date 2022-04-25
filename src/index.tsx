@@ -11,8 +11,9 @@ import Experience from './components/pages/experience'
 import Main from './components/pages/main'
 import Skills from './components/pages/skills'
 import Works from './components/pages/works'
-import { CONTACT, EXPERIENCE, MAIN, SKILLS, WORKS } from './constants/routes'
+import { CONTACT, EXPERIENCE, MAIN, SKILLS, WORK, WORKS } from './constants/routes'
 import store from './store'
+import Work from './components/pages/work'
 
 const root = createRoot(document.getElementById('root') as Element)
 
@@ -20,10 +21,11 @@ const RoutesC: FC = () => {
   const location = useLocation()
   return (
       <SwitchTransition >
-        <CSSTransition key={location.key} classNames="action" timeout={500}>
+        <CSSTransition key={location.key} classNames="action" timeout={1000}>
           <Routes location={location}>
             <Route path={MAIN} element={<Main />} />
             <Route path={WORKS} element={<Works />} />
+            <Route path={WORK} element={<Work />} />
             <Route path={EXPERIENCE} element={<Experience />} />
             <Route path={SKILLS} element={<Skills />} />
             <Route path={CONTACT} element={<Contact />} />

@@ -31,3 +31,45 @@
     }
   }
 }
+
+/* ANIMATION */
+
+.project-card {
+  animation: show-card 1.5s cubic-bezier(0.31, 0.59, 0.41, 0.98) both;
+}
+
+.action-exit-active {
+  .project-card {
+    animation: hidden-card 0.8s linear both;
+  }
+}
+
+@keyframes hidden-card {
+  0% {
+    opacity: 1;
+    transform: perspective(1000px) rotateX(0) scale3d(1, 1, 1);
+    transform-origin: top;
+  }
+
+  100% {
+    opacity: 0;
+    transform: perspective(1000px) rotateX(-30deg) scale3d(0.8, 0.8, 1);
+  }
+}
+
+@keyframes show-card {
+  0% {
+    opacity: 0;
+    transform: perspective(1000px) rotateX(-30deg) translateY(400px);
+    transform-origin: top;
+  }
+
+  60% {
+    transform: rotateX(-5deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: perspective(1000px) rotateX(0deg) translateY(0);
+  }
+}

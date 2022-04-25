@@ -1,4 +1,5 @@
-import React, { FC, useMemo } from 'react'
+import React, { FC, useCallback, useMemo } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { ProjectView } from '../../../../../api/types/projects'
 import { getUrlImageByTemplate } from '../../../../../utils/get-url-image'
 import { uniteClasses } from '../../../../../utils/unite-style-classes'
@@ -11,6 +12,7 @@ type Props = {
 }
 
 const CardProject: FC<Props> = (props) => {
+  const navigate = useNavigate()
   const { project, className } = props
   const { images, name } = project
   const description = images && images[0] && images[0].description || name || 'project image'
@@ -19,8 +21,12 @@ const CardProject: FC<Props> = (props) => {
   const id = useMemo(() => 'card' + project.id, [project])
   useAnimationEffect(id)
 
+  const handleClickCard = useCallback((id: string | null | undefined) => () => { 
+    if (id) navigate(`/work/${id}`)
+  }, [navigate])
+
   return (
-    <div className={uniteClasses('project-card', className)}>
+    <div className={uniteClasses('project-card', className)} onClick={handleClickCard(project.id)}>
       <div className='project-card__image-box' id={id}>
         {url ? <img src={url} alt={description} width='100%' /> : null}
       </div>
