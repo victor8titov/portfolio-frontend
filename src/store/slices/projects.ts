@@ -4,20 +4,22 @@ import { errorSerialization } from '../utils'
 import { Language, Pagination } from '../../types/common'
 import { QueryParameters } from '../../api/types/common'
 import { ActionAddMatcher } from './alert'
-import { ProjectView } from '../../api/types/projects'
+import { ProjectList, ProjectView } from '../../api/types/projects'
 
 export type ProjectState = {
-  projects: ProjectView[]
+  projects: ProjectList[]
   project: ProjectView | null
   pagination: Pagination | null
-  isLoading: boolean,
+  loading: boolean,
+  hasError: boolean
 }
 
 const initialState: ProjectState = {
   project: null,
   projects: [],
   pagination: null,
-  isLoading: false
+  loading: false,
+  hasError: false
 }
 
 const fetchProjects = createAsyncThunk(
@@ -56,7 +58,7 @@ const projectSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchProjects.fulfilled, (state, { payload }) => {
-        state.projects = payload.items
+        state.projects = [...state.projects, payload]
         state.pagination = payload.pagination || null
       })
       .addCase(fetchProjectById.fulfilled, (state, { payload }) => {
@@ -65,13 +67,19 @@ const projectSlice = createSlice({
       .addMatcher(
         (action): action is ActionAddMatcher => /Project.+\/(rejected|fulfilled)/.test(action.type),
         (state) => {
-          state.isLoading = false
+          state.loading = false
+        }
+      )
+      .addMatcher(
+        (action): action is ActionAddMatcher => /Project.+\/rejected/.test(action.type),
+        (state) => {
+          state.hasError = true
         }
       )
       .addMatcher(
         (action): action is ActionAddMatcher => /Project.+\/pending/.test(action.type),
         (state) => {
-          state.isLoading = true
+          state.loading = true
         }
       )
   }

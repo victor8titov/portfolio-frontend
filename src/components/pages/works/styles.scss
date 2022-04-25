@@ -1,17 +1,35 @@
-.works {
-}
+@import "../../../styles/variables";
+@import "../../../styles/grid/grid";
 
+.works {
+  &__content {
+    @include grid-row(xs);
+  }
+
+  &__cards-box {
+    @include grid-col(xs, 12);
+
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+  }
+}
 
 .action-enter.works {
   opacity: 0;
 }
+
 .action-enter-active.works {
   opacity: 1;
   transition: opacity 200ms;
 }
+
 .action-exit.works {
   opacity: 1;
 }
+
 .action-exit-active.works {
   opacity: 0;
   transition: opacity 200ms;
