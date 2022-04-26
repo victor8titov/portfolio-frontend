@@ -1,0 +1,182 @@
+@import "../../../styles/index";
+
+.work {
+  &__header-section {
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 100px;
+    margin-bottom: 50px;
+
+    @media (min-width: $md) {
+      margin-top: 0;
+    }
+
+    @media (min-width: $lg) {
+      align-items: center;
+    }
+  }
+
+  &__bread-crumbs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    width: 80%;
+
+    @media (min-width: $xl) {
+      width: 90%;
+    }
+
+    a,
+    span,
+    h1 {
+      @include font-third;
+
+      font-size: 3.2rem;
+      line-height: 4rem;
+    }
+
+    a {
+      position: relative;
+      display: inline-block;
+      text-decoration: none;
+
+      &::before {
+        position: absolute;
+        bottom: 5px;
+        left: 50%;
+        width: 0;
+        height: 1px;
+        content: "";
+        background-color: $info;
+        transition: all ease-in-out 300ms;
+      }
+
+      &:hover {
+        &::before {
+          left: 0;
+          width: 100%;
+        }
+      }
+
+      h1 {
+        margin: 0;
+      }
+    }
+
+    span {
+      display: inline-block;
+      overflow: hidden;
+      color: $info;
+    }
+  }
+
+  &__close-work {
+    position: absolute;
+    top: -65px;
+    right: 80px;
+
+    @media (min-width: $sm) {
+      right: 40px;
+    }
+
+    @media (min-width: $md) {
+      position: relative;
+      top: 0;
+      right: 0;
+    }
+
+    a {
+      @include font-third;
+
+      font-size: 3rem;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all ease-in-out 300ms;
+
+      &:hover {
+        color: $info;
+        letter-spacing: 0.05rem;
+      }
+    }
+  }
+
+  &__content-section {
+    @include grid-row(xs);
+
+    h2 {
+      @include font-third;
+
+      margin: 0;
+      font-size: 2.5rem;
+      line-height: 3rem;
+      text-transform: uppercase;
+    }
+  }
+
+  &__content-column-info {
+    @include grid-col(xs, 12, 0, 2);
+    @include grid-col(md, 5, 0, 1);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  &__content-column-main-text {
+    @include grid-col(xs, 12, 0, 1);
+    @include grid-col(md, 6, 1, 2);
+
+    h3 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    p {
+      text-align: justify;
+    }
+  }
+
+  &__images-box {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 280px;
+    margin-bottom: 30px;
+    border: 1px solid $yellow;
+    border-radius: 3px;
+  }
+
+  &__info-box {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  &__info-item {
+    ul, 
+    li,
+    p {
+      margin: 0;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      list-style-type: none;
+    }
+
+    p,
+    li {
+      margin: 5px 0;
+    }
+
+  }
+}

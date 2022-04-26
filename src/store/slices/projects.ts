@@ -8,14 +8,14 @@ import { ProjectList, ProjectView } from '../../api/types/projects'
 
 export type ProjectState = {
   projects: ProjectList[]
-  project: ProjectView | null
+  project: ProjectView[]
   pagination: Pagination | null
   loading: boolean,
   hasError: boolean
 }
 
 const initialState: ProjectState = {
-  project: null,
+  project: [],
   projects: [],
   pagination: null,
   loading: false,
@@ -62,7 +62,7 @@ const projectSlice = createSlice({
         state.pagination = payload.pagination || null
       })
       .addCase(fetchProjectById.fulfilled, (state, { payload }) => {
-        state.project = payload
+        state.project = [...state.project, payload]
       })
       .addMatcher(
         (action): action is ActionAddMatcher => /Project.+\/(rejected|fulfilled)/.test(action.type),

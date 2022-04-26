@@ -4,5 +4,7 @@ export default {
   work: 'Работа',
   skills: 'Навыки',
   experience: 'Опыт',
-  contact: 'Контакты'
+  contact: 'Контакты',
+  description: 'Описаине',
+  closeWork: 'назад'
 }

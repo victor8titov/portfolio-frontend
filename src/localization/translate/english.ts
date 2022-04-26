@@ -4,5 +4,7 @@ export default {
   work: 'Work',
   skills: 'Skills',
   experience: 'Experience',
-  contact: 'Contact'
+  contact: 'Contact',
+  description: 'Description',
+  closeWork: 'close Work'
 }

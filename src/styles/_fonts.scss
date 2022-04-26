@@ -10,7 +10,7 @@
 
 @mixin font-third {
   font-family: "Alumni Sans", sans-serif;
-  font-weight: 600;
+  font-weight: 300;
 }
 
 html,
@@ -29,7 +29,7 @@ h1 {
 }
 
 h2 {
-  @include font-third;
+  @include font-secondary;
 
   font-size: 4.2rem;
   line-height: 5.04rem;
@@ -37,7 +37,7 @@ h2 {
 }
 
 h3 {
-  @include font-secondary;
+  @include font-third;
 
   font-size: 3rem;
   color: $secondary;
@@ -53,6 +53,8 @@ span {
 }
 
 a {
-  font-size: 1.3rem;
+  @include font-primary;
+
+  font-size: 1.7rem;
   color: $primary;
 }

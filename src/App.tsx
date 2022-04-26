@@ -2,7 +2,7 @@ import React, { FC, ReactChild } from 'react'
 import Footer from './components/common/footer'
 import Header from './components/common/header'
 import { useInitLocalization } from './localization/use-init-localization'
-import './styles/index.scss'
+import './styles/app.scss'
 
 type Props = {
   children: ReactChild
