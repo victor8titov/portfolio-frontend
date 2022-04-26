@@ -9,12 +9,14 @@ export type SkillsState = {
   skills: ListSkillsResponse[]
   hasError: boolean
   loading: boolean
+  isEmpty: boolean
 }
 
 const initialState: SkillsState = {
   groups: [],
   skills: [],
   hasError: false,
+  isEmpty: false,
   loading: false
 }
 
@@ -43,9 +45,15 @@ const SkillsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchSkills.fulfilled, (state, { payload }) => {
+        state.loading = false
+
+        if (!payload.items.length) {
+          state.isEmpty = true
+          return
+        }
+
         state.groups = payload.groups
         state.skills = [...state.skills, payload]
-        state.loading = false
       })
       .addCase(fetchSkills.rejected, (state) => {
         state.hasError = true

@@ -22,7 +22,7 @@ const CardProject: FC<Props> = (props) => {
   useAnimationEffect(id)
 
   const handleClickCard = useCallback((id: string | null | undefined) => () => { 
-    if (id) navigate(`/work/${id}`)
+    if (id) navigate(`/works/${id}`)
   }, [navigate])
 
   return (

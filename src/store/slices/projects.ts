@@ -11,7 +11,8 @@ export type ProjectState = {
   project: ProjectView[]
   pagination: Pagination | null
   loading: boolean,
-  hasError: boolean
+  hasError: boolean,
+  isEmpty: boolean,
 }
 
 const initialState: ProjectState = {
@@ -19,7 +20,8 @@ const initialState: ProjectState = {
   projects: [],
   pagination: null,
   loading: false,
-  hasError: false
+  hasError: false,
+  isEmpty: false
 }
 
 const fetchProjects = createAsyncThunk(
@@ -58,11 +60,24 @@ const projectSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchProjects.fulfilled, (state, { payload }) => {
+        if (!payload.items.length) {
+          state.isEmpty = true
+          return
+        }
+
         state.projects = [...state.projects, payload]
         state.pagination = payload.pagination || null
       })
       .addCase(fetchProjectById.fulfilled, (state, { payload }) => {
+        if (!payload.id) {
+          state.isEmpty = true
+          return
+        }
+
         state.project = [...state.project, payload]
+      })
+      .addCase(fetchProjectById.rejected, (state) => {
+        state.isEmpty = true
       })
       .addMatcher(
         (action): action is ActionAddMatcher => /Project.+\/(rejected|fulfilled)/.test(action.type),

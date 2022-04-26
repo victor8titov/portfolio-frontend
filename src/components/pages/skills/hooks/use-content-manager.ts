@@ -15,10 +15,12 @@ const useContentManager: UseContentManager = () => {
   const language = useSelector((state: State) => state.settings.language)
   const skills = useSelector((state: State) => state.skills.skills.find(i => i.currentLanguage === language) || null)
   const hasError = useSelector((state: State) => state.skills.hasError)
+  const isEmpty = useSelector((state: State) => state.skills.isEmpty)
   const loading = useSelector((state: State) => state.skills.loading)
 
   useEffect(() => {
     if (
+      !isEmpty &&
       !hasError &&
       !loading &&
       !skills?.items.length &&
@@ -26,7 +28,7 @@ const useContentManager: UseContentManager = () => {
     ) {
       dispatch(skillsAction.fetchSkills({ language }))
     }
-  }, [language, hasError, loading, skills, dispatch])
+  }, [language, hasError, loading, skills, dispatch, isEmpty])
 
   return {
     skills,

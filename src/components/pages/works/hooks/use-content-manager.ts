@@ -15,10 +15,12 @@ const useContentManager: UseContentManager = () => {
   const language = useSelector((state: State) => state.settings.language)
   const projects = useSelector((state: State) => state.projects.projects.find(i => i.currentLanguage === language) || null)
   const hasError = useSelector((state: State) => state.projects.hasError)
+  const isEmpty = useSelector((state: State) => state.projects.isEmpty)
   const loading = useSelector((state: State) => state.projects.loading)
 
   useEffect(() => {
     if (
+      !isEmpty &&
       !hasError &&
       !loading &&
       !projects?.items.length &&
@@ -26,7 +28,7 @@ const useContentManager: UseContentManager = () => {
     ) {
       dispatch(projectsAction.fetchProjects({ language, page: 1, pageSize: 200 }))
     }
-  }, [language, hasError, loading, projects, dispatch])
+  }, [language, hasError, loading, projects, dispatch, isEmpty])
 
   return {
     projects,

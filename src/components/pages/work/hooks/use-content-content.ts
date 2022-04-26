@@ -3,6 +3,7 @@ import { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { ProjectView } from '../../../../api/types/projects'
+import { WORKS } from '../../../../constants/routes'
 import { AppDispatch, State } from '../../../../store'
 import { projectsAction } from '../../../../store/slices/projects'
 
@@ -21,6 +22,7 @@ const useContentManager: UseContentManager = () => {
   const language = useSelector((state: State) => state.settings.language)
   const projectList = useSelector((state: State) => state.projects.project)
   const hasError = useSelector((state: State) => state.projects.hasError)
+  const isEmpty = useSelector((state: State) => state.projects.isEmpty)
   const loading = useSelector((state: State) => state.projects.loading)
 
   const project = useMemo(() => projectList.find(i => i.currentLanguage === language) || null, [language, projectList])
@@ -52,8 +54,8 @@ const useContentManager: UseContentManager = () => {
   }, [dispatch])
 
   useEffect(() => {
-    if (hasError) navigate('/')
-  }, [hasError, navigate])
+    if (isEmpty) navigate(WORKS, { replace: true })
+  }, [isEmpty, navigate])
 
   return {
     loading,

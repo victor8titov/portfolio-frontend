@@ -3,17 +3,20 @@ import * as restApi from '../../api'
 import { errorSerialization } from '../utils'
 import { ListTimeStamps } from '../../api/types/time-stamp.types'
 import { QueryParameters } from '../../api/types/common'
+import { platform } from 'os'
 
 export type TimeStampState = {
   timeStamps: ListTimeStamps[]
   loading: boolean
   hasError: boolean
+  isEmpty: boolean
 }
 
 const initialState: TimeStampState = {
   timeStamps: [],
   loading: false,
-  hasError: false
+  hasError: false,
+  isEmpty: false
 
 }
 
@@ -40,8 +43,14 @@ const TimeStampsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchTimeStamps.fulfilled, (state, { payload }) => {
-        state.timeStamps = [...state.timeStamps, payload]
         state.loading = false
+
+        if (!payload.items.length) {
+          state.isEmpty = true
+          return
+        }
+
+        state.timeStamps = [...state.timeStamps, payload]
       })
       .addCase(fetchTimeStamps.rejected, (state) => {
         state.hasError = true

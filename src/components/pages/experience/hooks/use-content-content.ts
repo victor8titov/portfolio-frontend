@@ -17,10 +17,12 @@ const useContentManager: UseContentManager = () => {
   const language = useSelector((state: State) => state.settings.language)
   const timeStamps = useSelector((state: State) => state.timeStamps.timeStamps.find(i => i.currentLanguage === language) || null)
   const hasError = useSelector((state: State) => state.timeStamps.hasError)
+  const isEmpty = useSelector((state: State) => state.timeStamps.isEmpty)
   const loading = useSelector((state: State) => state.timeStamps.loading)
 
   useEffect(() => {
     if (
+      !isEmpty &&
       !hasError &&
       !loading &&
       !timeStamps?.items.length &&
@@ -28,7 +30,7 @@ const useContentManager: UseContentManager = () => {
     ) {
       dispatch(timeStampsAction.fetchTimeStamps({ language }))
     }
-  }, [language, hasError, loading, timeStamps, dispatch])
+  }, [language, hasError, loading, timeStamps, dispatch, isEmpty])
 
   return {
     timeStamps,
