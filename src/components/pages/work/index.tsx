@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import { Link } from 'react-router-dom'
 import { WORKS } from '../../../constants/routes'
 import { useLocalizedStrings } from '../../../localization/use-localized-strings'
 import Gallery from '../../common/gallery'
@@ -14,11 +15,11 @@ const Work: FC = () => {
     <section className='work'>
       <div className='work__header-section'>
         <div className='work__bread-crumbs'>
-          <a href={WORKS}><h1>{strings.works}/</h1></a><span>{project?.name || ''}</span>
+          <Link to={WORKS}><h1>{strings.works}/</h1></Link><span>{project?.name || ''}</span>
         </div>
 
         <div className='work__close-work'>
-          <a href={WORKS}>{strings.closeWork}</a>
+          <Link to={WORKS}>{strings.closeWork}</Link>
         </div>
       </div>
 

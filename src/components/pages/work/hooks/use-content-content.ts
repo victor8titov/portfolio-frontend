@@ -54,7 +54,7 @@ const useContentManager: UseContentManager = () => {
   }, [dispatch])
 
   useEffect(() => {
-    if (isEmpty) navigate(WORKS, { replace: true })
+    if (isEmpty) navigate(WORKS)
   }, [isEmpty, navigate])
 
   return {
