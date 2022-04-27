@@ -1,0 +1,133 @@
+@import "../../../styles/index";
+
+.mouse-scroll {
+  position: fixed;
+  bottom: 50px;
+  left: calc(50% - 9px);
+  box-sizing: border-box;
+  display: none;
+  width: 18px;
+  height: 35px;
+  border: 2px solid $gray-300;
+  border-radius: 14px;
+  transition: all 0.5ms linear;
+
+  @media (min-width: $md) {
+    display: block;
+  }
+
+  &__wheel {
+    position: relative;
+    display: block;
+    width: 6px;
+    height: 6px;
+    margin: 5px auto;
+    background: $gray-300;
+    border-radius: 100%;
+  }
+}
+
+.mouse-scroll_10 {
+  background: linear-gradient(to top, $gray-300, $gray-300 10%, transparent 10%, transparent);
+}
+
+.mouse-scroll_20 {
+  background: linear-gradient(to top, $gray-300, $gray-300 20%, transparent 20%, transparent);
+}
+
+.mouse-scroll_30 {
+  background: linear-gradient(to top, $gray-300, $gray-300 30%, transparent 30%, transparent);
+}
+
+.mouse-scroll_40 {
+  background: linear-gradient(to top, $gray-300, $gray-300 40%, transparent 40%, transparent);
+}
+
+.mouse-scroll_50 {
+  background: linear-gradient(to top, $gray-300, $gray-300 50%, transparent 50%, transparent);
+  animation: vibrate-1 0.8s linear infinite both;
+}
+
+.mouse-scroll_60 {
+  background: linear-gradient(to top, $gray-300, $gray-300 60%, transparent 60%, transparent);
+  animation: vibrate-1 0.7s linear infinite both;
+}
+
+.mouse-scroll_70 {
+  background: linear-gradient(to top, $gray-300, $gray-300 70%, transparent 70%, transparent);
+  animation: vibrate-1 0.5s linear infinite both;
+}
+
+.mouse-scroll_80 {
+  background: linear-gradient(to top, $gray-300, $gray-300 80%, transparent 80%, transparent);
+  animation: vibrate-1 0.3s linear infinite both;
+}
+
+.mouse-scroll_90 {
+  animation: burst 0.3s cubic-bezier(0.86, 0.94, 0.81, 0.41) both;
+}
+
+.mouse-scroll {
+  &__wheel {
+    animation: mouse-wheel 2s linear infinite;
+  }
+}
+
+@keyframes mouse-wheel {
+
+  0% { transform: translateY(0); }
+  10% { transform: translateY(2px); }
+  20% { transform: translateY(3px); }
+  30% { transform: translateY(2px); }
+  40% { transform: translateY(0); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes mouse-scroll {
+
+  0% { opacity: 0; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+@keyframes vibrate-1 {
+  0% {
+    transform: translate(0);
+  }
+
+  20% {
+    transform: translate(-1px, 1px);
+  }
+
+  40% {
+    transform: translate(-1px, -1px);
+  }
+
+  60% {
+    transform: translate(1px, 1px);
+  }
+
+  80% {
+    transform: translate(1px, -1px);
+  }
+
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes burst {
+  0% {
+    background: $gray-300;
+    transform: scale(1);
+  }
+
+  90% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    background: transparent;
+    transform: scale(1.5);
+  }
+}

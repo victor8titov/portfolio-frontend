@@ -1,19 +1,31 @@
 import moment from 'moment'
 import React, { FC, useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { TimeStampView } from '../../../api/types/time-stamp.types'
+import { SKILLS } from '../../../constants/routes'
 import { useLocalizedStrings } from '../../../localization/use-localized-strings'
+import useScroll from '../../../utils/use-scroll'
 import LoadingSuspense from '../../common/loading-suspense'
+import Scroll from '../../common/scroll'
 import TimeLine from '../../common/timeline'
 import useContentManager from './hooks/use-content-content'
 import './styles.scss'
 
 const Experience: FC = () => {
+  const navigate = useNavigate()
+
   const { loading, timeStamps, language } = useContentManager()
   const { strings } = useLocalizedStrings()
 
   const getDescription = useCallback((timeStamp: TimeStampView) =>
     timeStamp.description?.split('\n') || ['']
   , [])
+
+  const goToSkillsPage = useCallback(() => {
+    navigate(SKILLS)
+  }, [navigate])
+
+  const { transitionOver } = useScroll({ onTransitionUp: goToSkillsPage })
 
   let tempYear: number | null = null
 
@@ -61,6 +73,7 @@ const Experience: FC = () => {
           </TimeLine>
         </div>
       </LoadingSuspense>
+      <Scroll percent={transitionOver}/>
     </section>
   )
 }

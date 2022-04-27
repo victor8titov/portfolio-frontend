@@ -10,6 +10,7 @@ type Props = {
 
 const App: FC<Props> = ({ children }) => {
   useInitLocalization()
+
   return (
     <div className='app'>
       <Header />

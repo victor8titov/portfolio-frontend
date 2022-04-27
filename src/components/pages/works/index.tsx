@@ -1,13 +1,28 @@
-import React, { FC } from 'react'
+import React, { FC, useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { MAIN, SKILLS } from '../../../constants/routes'
 import { useLocalizedStrings } from '../../../localization/use-localized-strings'
+import useScroll from '../../../utils/use-scroll'
 import LoadingSuspense from '../../common/loading-suspense'
+import Scroll from '../../common/scroll'
 import CardProject from './components/card-project'
 import useContentManager from './hooks/use-content-manager'
 import './styles.scss'
 
 const Works: FC = () => {
+  const navigate = useNavigate()
+
   const { loading, projects } = useContentManager()
   const { strings } = useLocalizedStrings()
+
+  const goToSkillsPage = useCallback(() => {
+    navigate(SKILLS)
+  }, [navigate])
+
+  const goToMainPage = useCallback(() => {
+    navigate(MAIN)
+  }, [navigate])
+  const { transitionOver } = useScroll({ onTransitionDown: goToSkillsPage, onTransitionUp: goToMainPage })
 
   return (
     <section className='works'>
@@ -24,6 +39,7 @@ const Works: FC = () => {
           </div>
         </div>
       </LoadingSuspense>
+      <Scroll percent={transitionOver}/>
     </section>
   )
 }

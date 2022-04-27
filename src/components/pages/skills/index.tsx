@@ -1,10 +1,16 @@
-import React, { FC, useMemo } from 'react'
+import React, { FC, useCallback, useMemo } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { EXPERIENCE, WORKS } from '../../../constants/routes'
 import { useLocalizedStrings } from '../../../localization/use-localized-strings'
+import useScroll from '../../../utils/use-scroll'
 import LoadingSuspense from '../../common/loading-suspense'
+import Scroll from '../../common/scroll'
+import ColumnGroups from './components/column-groups'
 import useContentManager from './hooks/use-content-manager'
 import './styles.scss'
 
 const Skills: FC = () => {
+  const navigate = useNavigate()
   const { skills, loading } = useContentManager()
   const { strings } = useLocalizedStrings()
 
@@ -17,23 +23,15 @@ const Skills: FC = () => {
     [skills]
   )
 
-  const ColumnGroups: FC<{list: string[]}> = ({ list }) => {
-    return (
-      <>
-        {list.map((group, index) => {
-          const found = skills?.items
-            .filter((i) => i.group === group)
-            .map((i) => i.name)
-          return (
-            <div key={group + found} className="skills__group" style={{ animationDelay: 150 * index + 'ms' }}>
-              <h2>{group}</h2>
-              <p>{found?.join(', ')}</p>
-            </div>
-          )
-        })}
-      </>
-    )
-  }
+  const goToWorksPage = useCallback(() => {
+    navigate(WORKS)
+  }, [navigate])
+
+  const goToExperiencePage = useCallback(() => {
+    navigate(EXPERIENCE)
+  }, [navigate])
+  const { transitionOver } = useScroll({ onTransitionDown: goToExperiencePage, onTransitionUp: goToWorksPage })
+
   return (
     <section className="skills">
       <div className="skills__title-section">
@@ -42,12 +40,13 @@ const Skills: FC = () => {
 
       <LoadingSuspense loading={loading}>
         <div className="skills__column-left">
-          <ColumnGroups list={groupsLeft} />
+          <ColumnGroups groups={groupsLeft} skills={skills} />
         </div>
         <div className="skills__column-right">
-          <ColumnGroups list={groupsRight} />
+          <ColumnGroups groups={groupsRight} skills={skills} />
         </div>
       </LoadingSuspense>
+      <Scroll percent={transitionOver}/>
     </section>
   )
 }
