@@ -17,7 +17,7 @@ const usePoints: UsePoints = () => {
     { path: WORKS, text: strings.works },
     { path: SKILLS, text: strings.skills },
     { path: EXPERIENCE, text: strings.experience },
-    { path: CONTACT, text: strings.contact }
+    // { path: CONTACT, text: strings.contact }
   ], [strings])
 
   return points

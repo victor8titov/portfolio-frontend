@@ -28,7 +28,7 @@ const RoutesC: FC = () => {
             <Route path={WORK} element={<Work />} />
             <Route path={EXPERIENCE} element={<Experience />} />
             <Route path={SKILLS} element={<Skills />} />
-            <Route path={CONTACT} element={<Contact />} />
+            {/* <Route path={CONTACT} element={<Contact />} /> */}
             <Route path="*" element={<Main />} />
           </Routes>
         </CSSTransition>
