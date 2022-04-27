@@ -21,7 +21,7 @@ body {
   width: 90%;
   min-height: 100vh;
   margin: 0 auto;
-  // overflow: hidden;
+  overflow: hidden;
 
   @media (min-width: $sm) {
     width: 80%;

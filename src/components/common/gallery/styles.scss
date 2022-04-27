@@ -118,3 +118,11 @@
     background-color: $yellow;
   }
 }
+
+.gallery_one-image {
+  border: 1px solid $yellow;
+
+  &::before {
+    display: none;
+  }
+}

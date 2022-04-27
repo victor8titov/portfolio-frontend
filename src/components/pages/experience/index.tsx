@@ -1,5 +1,6 @@
 import moment from 'moment'
-import React, { FC } from 'react'
+import React, { FC, useCallback } from 'react'
+import { TimeStampView } from '../../../api/types/time-stamp.types'
 import { useLocalizedStrings } from '../../../localization/use-localized-strings'
 import LoadingSuspense from '../../common/loading-suspense'
 import TimeLine from '../../common/timeline'
@@ -9,6 +10,10 @@ import './styles.scss'
 const Experience: FC = () => {
   const { loading, timeStamps, language } = useContentManager()
   const { strings } = useLocalizedStrings()
+
+  const getDescription = useCallback((timeStamp: TimeStampView) =>
+    timeStamp.description?.split('\n') || ['']
+  , [])
 
   let tempYear: number | null = null
 
@@ -43,7 +48,12 @@ const Experience: FC = () => {
                   }
                   <TimeLine.Item info={infoText} key={timeStamp.id} className='experience__item'>
                     <h3>{timeStamp.name}</h3>
-                    <p>{timeStamp.description}</p>
+                    <>
+                    {
+                      getDescription(timeStamp)
+                        .map((i, index) => <p key={i + index}>{i}</p>)
+                    }
+                    </>
                   </TimeLine.Item>
                 </>
               )
