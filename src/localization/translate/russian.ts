@@ -6,5 +6,8 @@ export default {
   experience: 'Опыт',
   contact: 'Контакты',
   description: 'Описаине',
-  closeWork: 'назад'
+  closeWork: 'назад',
+  date: 'Дата',
+  stack: 'Стек',
+  links: 'Ссылки'
 }

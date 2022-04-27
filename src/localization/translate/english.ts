@@ -6,5 +6,8 @@ export default {
   experience: 'Experience',
   contact: 'Contact',
   description: 'Description',
-  closeWork: 'close Work'
+  closeWork: 'close Work',
+  date: 'Date',
+  stack: 'Stack',
+  links: 'Links'
 }

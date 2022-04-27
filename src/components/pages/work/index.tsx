@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import { WORKS } from '../../../constants/routes'
 import { useLocalizedStrings } from '../../../localization/use-localized-strings'
+import Gallery from '../../common/gallery'
 import LoadingSuspense from '../../common/loading-suspense'
 import useContentManager from './hooks/use-content-content'
 import './styles.scss'
@@ -13,11 +14,11 @@ const Work: FC = () => {
     <section className='work'>
       <div className='work__header-section'>
         <div className='work__bread-crumbs'>
-          <a href={'/' + WORKS}><h1>{strings.works}/</h1></a><span>{project?.name || ''}</span>
+          <a href={WORKS}><h1>{strings.works}/</h1></a><span>{project?.name || ''}</span>
         </div>
 
         <div className='work__close-work'>
-          <a href={'/' + WORKS}>{strings.closeWork}</a>
+          <a href={WORKS}>{strings.closeWork}</a>
         </div>
       </div>
 
@@ -25,28 +26,28 @@ const Work: FC = () => {
         <div className='work__content-section'>
           <div className='work__content-column-info'>
             <div className='work__images-box'>
-              <p>img box</p>
+              <Gallery images={project?.images}/>
             </div>
 
             <div className='work__info-box'>
             {date
               ? <div className='work__info-item'>
-                    <h2>Дата</h2>
+                    <h2>{strings.date}</h2>
                     <p>{date}</p>
                   </div>
               : null}
 
-              {project?.stack
+              {project?.stack?.length
                 ? <div className='work__info-item'>
-                    <h2>Стек</h2>
+                    <h2>{strings.stack}</h2>
                     {project.stack.map((i, index) =>
                       <p key={i + index}>{i}</p>)}
                   </div>
                 : null}
 
-              {project?.links
+              {project?.links?.length
                 ? <div className='work__info-item'>
-                    <h2>Ссылки</h2>
+                    <h2>{strings.links}</h2>
                     <ul>
                       {project.links.map((i, index) => <li key={i.link + index}><a href={i.link}>{i.name ? i.name : i.link}</a></li>)}
                     </ul>

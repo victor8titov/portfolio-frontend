@@ -1,0 +1,120 @@
+@import "../../../styles/index";
+
+.gallery {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 280px;
+  padding: 0;
+  padding-bottom: 20px;
+  margin-bottom: 50px;
+  border: none;
+  border-radius: 3px;
+
+  @media (min-width: $sm) {
+    padding: 20px;
+    margin-bottom: 0;
+    border: 1px solid $yellow;
+    border-bottom: none;
+  }
+
+  &::before {
+    position: absolute;
+    right: 176px;
+    bottom: 0;
+    left: 1px;
+    display: none;
+    height: 0.5px;
+    content: "";
+    background-color: $yellow;
+
+    @media (min-width: $sm) {
+      display: block;
+    }
+  }
+
+  .slick-slider {
+    position: static;
+  }
+
+  img {
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+  }
+
+  .slick-prev,
+  .slick-next {
+    top: auto;
+    bottom: -50px;
+    width: 62px;
+    height: 14px;
+    padding: 15px;
+    transition: all 500ms;
+    transform: scaleX(1);
+
+    &:hover {
+      transform: scaleX(1.12);
+    }
+
+    @media (min-width: $sm) {
+      bottom: -22px;
+    }
+  }
+
+  .slick-next {
+    right: 0;
+
+    &:active {
+      transform: scaleX(1.2) translateX(10px);
+    }
+
+    @media (min-width: $sm) {
+      right: -3px;
+    }
+  }
+
+  .slick-prev {
+    right: auto;
+    left: 0;
+
+    &:active {
+      transform: scaleX(1.2) translateX(-10px);
+    }
+
+    @media (min-width: $sm) {
+      right: 85px;
+      left: auto;
+    }
+  }
+
+  .slick-dots {
+    right: 0;
+    bottom: 5px;
+    left: 0;
+    display: inline-block;
+    width: auto;
+    padding: 0 15px;
+    opacity: 0.5;
+
+    @media (min-width: $sm) {
+      bottom: 32px;
+    }
+
+    li {
+      width: 8px;
+      height: 8px;
+    }
+  }
+
+  &__dot {
+    width: 8px;
+    height: 8px;
+    background-color: $gray-300;
+    border-radius: 100%;
+  }
+
+  .slick-active .gallery__dot {
+    background-color: $yellow;
+  }
+}

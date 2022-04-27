@@ -131,7 +131,7 @@ const config = {
       },
       {
         test: /\.css$/i,
-        exclude: /node_modules/,
+        //exclude: /node_modules/,
         use: [
           stylesHandler,
           'css-loader',

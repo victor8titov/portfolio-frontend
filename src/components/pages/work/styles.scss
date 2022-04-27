@@ -120,7 +120,7 @@
 
   &__content-column-info {
     @include grid-col(xs, 12, 0, 2);
-    @include grid-col(md, 5, 0, 1);
+    @include grid-col(md, 6, 0, 1);
 
     display: flex;
     flex-direction: column;
@@ -131,7 +131,7 @@
 
   &__content-column-main-text {
     @include grid-col(xs, 12, 0, 1);
-    @include grid-col(md, 6, 1, 2);
+    @include grid-col(md, 5, 1, 2);
 
     h3 {
       margin: 0;
@@ -146,26 +146,25 @@
   &__images-box {
     box-sizing: border-box;
     width: 100%;
-    min-height: 280px;
+    // min-height: 280px;
     margin-bottom: 30px;
-    border: 1px solid $yellow;
-    border-radius: 3px;
   }
 
   &__info-box {
     box-sizing: border-box;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    gap: 30px;
+    justify-content: flex-start;
     width: 100%;
   }
 
   &__info-item {
-    ul, 
+    ul,
     li,
     p {
-      margin: 0;
       padding: 0;
+      margin: 0;
       margin: 0;
     }
 
@@ -177,6 +176,5 @@
     li {
       margin: 5px 0;
     }
-
   }
 }
