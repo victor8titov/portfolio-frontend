@@ -1,0 +1,58 @@
+@import "../../../styles/index";
+
+.loading {
+  width: 66px;
+  height: 12px;
+  margin: 10% auto 0;
+
+  &__line {
+    display: inline-block;
+    width: 3px;
+    height: 12px;
+    margin: 0 2px;
+    background: $gray-200;
+    animation: opacity-1 1000ms infinite ease-in-out;
+  }
+
+  .loading__line {
+    &_1 { animation-delay: 800ms; }
+    &_2 { animation-delay: 600ms; }
+    &_3 { animation-delay: 400ms; }
+    &_4 { animation-delay: 200ms; }
+    &_6 { animation-delay: 200ms; }
+    &_7 { animation-delay: 400ms; }
+    &_8 { animation-delay: 600ms; }
+    &_9 { animation-delay: 800ms; }
+  }
+}
+
+@keyframes opacity-1 {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes opacity-2 {
+  0% {
+    height: 15px;
+    opacity: 1;
+  }
+
+  50% {
+    height: 12px;
+    opacity: 0;
+  }
+
+  100% {
+    height: 15px;
+    opacity: 1;
+  }
+}
