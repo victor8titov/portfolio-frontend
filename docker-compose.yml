@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+
+  portfolio_frontend_nginx:
+    restart: always
+    image: portfolio_frontend_nginx_image
+    container_name: portfolio_frontend_nginx_container
+    env_file:
+      - .env
+    build:
+      context: ./
+      args:
+        REST_API_URL_PRODUCTION: $REST_API_URL_PRODUCTION
+        REST_API_PORT_PRODUCTION: $REST_API_PORT_PRODUCTION
+        ADMIN_URL_PRODUCTION: $ADMIN_URL_PRODUCTION
+        ADMIN_PORT_PRODUCTION: $ADMIN_PORT_PRODUCTION
+    networks:
+      - portfolio_network
+    ports:
+      - "5050:80"
+
+
+networks:
+  portfolio_network:
+    external: true
