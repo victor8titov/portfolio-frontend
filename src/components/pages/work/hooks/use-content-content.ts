@@ -6,6 +6,7 @@ import { ProjectView } from '../../../../api/types/projects'
 import { WORKS } from '../../../../constants/routes'
 import { AppDispatch, State } from '../../../../store'
 import { projectsAction } from '../../../../store/slices/projects'
+import { parseString } from '../../../../utils/parse-string'
 
 type UseContentManager = () => {
   project: ProjectView | null
@@ -26,7 +27,7 @@ const useContentManager: UseContentManager = () => {
   const loading = useSelector((state: State) => state.projects.loading)
 
   const project = useMemo(() => projectList.find(i => i.currentLanguage === language) || null, [language, projectList])
-  const description = useMemo(() => project?.description?.split('\n') || [''], [project])
+  const description = useMemo(() => parseString(project?.description), [project])
 
   const date: string | null = useMemo(() => {
     if (!project?.events[0]?.date) return null

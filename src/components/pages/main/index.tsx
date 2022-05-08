@@ -30,7 +30,7 @@ const Main: FC = () => {
         <div className='main__description'>
           {title ? <h1>{title}</h1> : null}
           {subtitle ? <h2>{subtitle}</h2> : null}
-          {description ? description.map(i => <p key={i}>{i}</p>) : null}
+          {description ? description.map((i, index) => <p key={i + index} dangerouslySetInnerHTML={{ __html: i }} />) : null}
         </div>
       </LoadingSuspense>
       <Scroll percent={transitionOver}/>

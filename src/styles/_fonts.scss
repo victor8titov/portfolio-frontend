@@ -58,3 +58,13 @@ a {
   font-size: 1.7rem;
   color: $primary;
 }
+
+a,
+p,
+span,
+h1,
+h2,
+h3,
+h4 {
+  word-wrap: break-word;
+}

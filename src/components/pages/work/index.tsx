@@ -60,7 +60,7 @@ const Work: FC = () => {
           <div className='work__content-column-main-text'>
             <h2>{strings.description}</h2>
             {project?.type ? <h3>{project.type}</h3> : null}
-            {description.map((i, index) => <p key={i + index}>{i}</p>)}
+            {description.map((i, index) => <p key={i + index} dangerouslySetInnerHTML={{ __html: i }} />)}
           </div>
         </div>
       </LoadingSuspense>

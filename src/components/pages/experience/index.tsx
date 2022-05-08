@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { TimeStampView } from '../../../api/types/time-stamp.types'
 import { SKILLS } from '../../../constants/routes'
 import { useLocalizedStrings } from '../../../localization/use-localized-strings'
+import { parseString } from '../../../utils/parse-string'
 import useScroll from '../../../utils/use-scroll'
 import LoadingSuspense from '../../common/loading-suspense'
 import Scroll from '../../common/scroll'
@@ -18,7 +19,7 @@ const Experience: FC = () => {
   const { strings } = useLocalizedStrings()
 
   const getDescription = useCallback((timeStamp: TimeStampView) =>
-    timeStamp.description?.split('\n') || ['']
+    parseString(timeStamp.description)
   , [])
 
   const goToSkillsPage = useCallback(() => {
@@ -63,7 +64,7 @@ const Experience: FC = () => {
                     <>
                     {
                       getDescription(timeStamp)
-                        .map((i, index) => <p key={i + index}>{i}</p>)
+                        .map((i, index) => <p key={i + index} dangerouslySetInnerHTML={{ __html: i }}/>)
                     }
                     </>
                   </TimeLine.Item>

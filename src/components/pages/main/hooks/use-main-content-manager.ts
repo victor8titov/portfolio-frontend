@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, State } from '../../../../store'
 import { homePageActions } from '../../../../store/slices/homepage'
 import { getUrlImageByTemplate } from '../../../../utils/get-url-image'
+import { parseString } from '../../../../utils/parse-string'
 import useBreakpoint from '../../../../utils/use-breakpoint'
 import useManagerLoadingImage, { StatusImage } from '../../../../utils/use-manager-loading-image'
 
@@ -28,10 +29,11 @@ const useMainContentManager: UseMainContentManager = () => {
   const homePage = useMemo(() => homePageList.find(i => i.currentLanguage === language) || null, [homePageList, language])
   const title = useMemo(() => homePage?.title ? homePage.title : null, [homePage])
   const subtitle = useMemo(() => homePage?.subtitle ? homePage.subtitle : null, [homePage])
-  const description = useMemo(() =>
-    homePage?.description
-      ? homePage.description.split('\n').filter(i => i)
-      : null, [homePage])
+  const description = useMemo(() => {
+    if (!homePage || !homePage.description) return null
+    const _list = parseString(homePage.description)
+    return _list.length ? _list : null
+  }, [homePage])
 
   useEffect(() => {
     if (

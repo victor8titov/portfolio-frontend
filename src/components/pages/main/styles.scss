@@ -60,9 +60,14 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
+    overflow-x: hidden;
 
     @media (min-width: $md) {
       justify-content: center;
+    }
+
+    img {
+      width: 100%;
     }
   }
 }

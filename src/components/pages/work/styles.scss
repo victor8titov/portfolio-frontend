@@ -133,6 +133,8 @@
     @include grid-col(xs, 12, 0, 1);
     @include grid-col(md, 5, 1, 2);
 
+    overflow-x: hidden;
+
     h3 {
       margin: 0;
       font-size: 2rem;
@@ -140,6 +142,10 @@
 
     p {
       text-align: justify;
+    }
+
+    img {
+      width: 100%;
     }
   }
 
