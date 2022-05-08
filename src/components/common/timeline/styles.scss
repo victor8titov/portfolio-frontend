@@ -4,16 +4,17 @@
   width: 100%;
   padding: 0;
   margin: 0;
+
+  @media (min-width: $md) {
+    display: table;
+  }
 }
 
 .timeline_split {
   @media (min-width: $md) {
-    .timeline {
-      display: table;
-    }
-
     .timeline-item {
       display: table-row;
+      width: 100%;
       padding: 0;
     }
 
@@ -22,6 +23,7 @@
     .timeline-item__content,
     .timeline-item_period .timeline-item__info {
       display: table-cell;
+      overflow: hidden;
       vertical-align: top;
     }
 
@@ -37,14 +39,16 @@
       padding-right: 30px;
     }
 
-    .timeline-item_period .timeline-item__content {
-      h1,
-      h2,
-      h3,
-      p,
-      span {
-        position: relative;
-        left: -45px;
+    .timeline-item_period {
+      .timeline-item__content {
+        h1,
+        h2,
+        h3,
+        p,
+        span {
+          position: relative;
+          left: -45px;
+        }
       }
     }
   }
