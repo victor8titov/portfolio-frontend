@@ -25,6 +25,20 @@
     span + span {
       margin-top: 7px;
     }
+
+    span:nth-child(1) {
+      top: 0;
+      transform: rotate(0deg);
+    }
+
+    span:nth-child(2) {
+      transform: scale(1);
+    }
+
+    span:nth-child(3) {
+      bottom: 0;
+      transform: rotate(0);
+    }
   }
 
   &__mask {
@@ -36,6 +50,7 @@
     z-index: $z-index-surface;
     overflow-x: hidden;
     border-radius: 100%;
+    opacity: 0;
   }
 
   &__content {
@@ -47,6 +62,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow-x: hidden;
     overflow-y: auto;
   }
 
@@ -78,6 +94,7 @@
 
   &__item {
     width: 100%;
+    opacity: 0;
 
     &_active {
       a {

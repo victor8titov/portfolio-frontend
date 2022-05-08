@@ -22,12 +22,14 @@ const MobileMenu: FC = () => {
   const { showScroll, hideScroll } = useManageBodyScroll(handleResizeWidthBody)
 
   const handleClickBurgerMenu = useCallback((e: any) => {
-    e.currentTarget.classList.toggle('mobile-menu_active')
-    e.currentTarget.classList.toggle('mobile-menu_not-active')
+    const classList = e.currentTarget.classList
+    classList.toggle('mobile-menu_active')
 
-    if (e.currentTarget.classList.contains('mobile-menu_active')) {
+    if (classList.contains('mobile-menu_active')) {
+      classList.remove('mobile-menu_not-active')
       hideScroll()
     } else {
+      classList.add('mobile-menu_not-active')
       showScroll()
     }
   }, [hideScroll, showScroll])
@@ -37,7 +39,7 @@ const MobileMenu: FC = () => {
   }, [showScroll])
 
   return (
-    <div className="mobile-menu mobile-menu_not-active" onClick={handleClickBurgerMenu}>
+    <div className="mobile-menu" onClick={handleClickBurgerMenu}>
       <div className="mobile-menu__burger">
         <span></span>
         <span></span>
