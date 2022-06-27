@@ -12,10 +12,16 @@
   position: fixed;
   top: 20px;
   right: 20px;
+  animation: showing 3s;
 
   @media (min-width: $md) {
     top: 30%;
     right: 10px;
     text-align: right;
   }
+}
+
+@keyframes showing {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
