@@ -17,7 +17,7 @@ services:
     networks:
       - portfolio_network
     ports:
-      - "5050:80"
+      - "80:80"
 
 
 networks:
